@@ -12,9 +12,9 @@ const corsOptions = {
 
 router.use(cors(corsOptions));
 
-router.get("/", recipeController.fetchAllRecipes);
-router.get("/:id", recipeController.fetchRecipeById);
 router.get("/type/:type", recipeController.fetchRecipesByType);
+router.get("/:id", recipeController.fetchRecipeById);
+router.get("/", recipeController.fetchAllRecipes);
 router.post("/", recipeController.createRecipe);
 router.delete("/:id", recipeController.removeRecipe);
 module.exports = router;
