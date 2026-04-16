@@ -7,9 +7,9 @@ async function getAllRecipes(){
     return result.rows;
 }
 
-async function getOneRecipeById(recipeid){
-    const queryText = "SELECT * FROM recipes where id=$1";
-    const values = [recipeid];
+async function getOneRecipeById(id){
+    const queryText = "SELECT * FROM recipes where recipeid=$1";
+    const values = [id];
     const result = await pool.query(queryText, values);
     return result.rows[0];
 }
@@ -20,9 +20,9 @@ async function getRecipesByType(params){
     return result.rows;
 }
 
-async function deleteRecipe(recipeid){
-    let queryText = "DELETE FROM recipes WHERE id=$1";
-    const values = [recipeid];
+async function deleteRecipe(id){
+    let queryText = "DELETE FROM recipes WHERE recipeid=$1";
+    const values = [id];
     const result = await pool.query(queryText, values);
     return result.rowCount;
 }
