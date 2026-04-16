@@ -1,0 +1,20 @@
+"use strict";
+const express = require("express");
+const router = express.Router();
+const recipeController = require('../controllers/recipeController');
+
+const cors = require('cors');
+
+const corsOptions = {
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true // Allow cookies and authentication headers
+};
+
+router.use(cors(corsOptions));
+
+router.get("/", recipeController.fetchAllRecipes);
+router.get("/:id", recipeController.fetchRecipeById);
+router.get("/type/:type", recipeController.fetchRecipesByType);
+router.post("/", recipeController.createRecipe);
+router.delete("/:id", recipeController.removeRecipe);
+module.exports = router;
