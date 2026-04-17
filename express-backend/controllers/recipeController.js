@@ -31,7 +31,7 @@ async function fetchRecipesByType(req, res) {
    
     if (type) {
         try {
-            const recipes = await model.getRecipesByType(type);
+            const recipes = await model.getRecipesByType([type]);
             res.json(recipes);
         } catch (err) {
             console.error(err);

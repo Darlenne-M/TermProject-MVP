@@ -8,7 +8,9 @@ async function getAllRecipes(){
 }
 
 async function getOneRecipeById(id){
-    const queryText = "SELECT * FROM recipes where recipeid=$1";
+    
+    console.log(id);
+    const queryText = "SELECT * FROM recipes where id=$1";
     const values = [id];
     const result = await pool.query(queryText, values);
     return result.rows[0];

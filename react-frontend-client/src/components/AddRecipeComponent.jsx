@@ -74,7 +74,7 @@ const AddRecipeComponent = () => {
 
 
                 </div>
-                <button type="submit" className="btn btn-primary mt-3">Add Product</button>
+                <button type="submit" className="button">Add Product</button>
 
 
 

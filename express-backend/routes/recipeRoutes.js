@@ -13,7 +13,7 @@ const corsOptions = {
 router.use(cors(corsOptions));
 
 router.get("/type/:type", recipeController.fetchRecipesByType);
-router.get("/user/:user", recipeController.fetchRecipesByType);
+router.get("/user/:user", recipeController.fetchRecipesByUser);
 router.get("/:id", recipeController.fetchRecipeById);
 router.get("/", recipeController.fetchAllRecipes);
 router.post("/", recipeController.createRecipe);

@@ -14,7 +14,6 @@
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
-
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
@@ -51,6 +50,7 @@
 }
 
 body {
+  background-color: white;
   margin: 0;
 }
 
@@ -68,29 +68,34 @@ body {
 
 h1,
 h2 {
+
   font-family: var(--heading);
   font-weight: 500;
-  color: var(--text-h);
+  color: black;
 }
 
 h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
+
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
   }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
+
   @media (max-width: 1024px) {
     font-size: 20px;
   }
 }
+
 p {
   margin: 0;
 }
@@ -108,4 +113,134 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: lightskyblue;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 50%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.items-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.item {
+  background-color: rgba(255, 166, 0, 0.514);
+  flex: 0 0 200px;
+  color: grey;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.item .text {
+  padding: 0 20px 20px;
+}
+
+.card-holder {
+  color: grey;
+  width: 400px;
+  height: 300px;
+  background-color: rgba(255, 166, 0, 0.514);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  text-align: center;
+}
+
+.card-holder h3 {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+#details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: white;
+  color: rgba(255, 166, 0, 0.784);
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.delete-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.button {
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgba(255, 166, 0, 0.784);
+  color: white;
 }
