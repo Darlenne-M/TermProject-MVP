@@ -20,6 +20,13 @@ async function getRecipesByType(params){
     return result.rows;
 }
 
+async function getRecipesUser(user_id){
+    const queryText = "SELECT * FROM recipes where user_id=$1";
+    const values = [user_id];
+    const result = await pool.query(queryText, values);
+    return result.rows;
+}
+
 async function deleteRecipe(id){
     let queryText = "DELETE FROM recipes WHERE recipeid=$1";
     const values = [id];
@@ -27,9 +34,9 @@ async function deleteRecipe(id){
     return result.rowCount;
 }
 
-async function addRecipe(name, time, servings, mode, calories, ingredients, instructions, type){
-    let queryText = "INSERT INTO recipes (name, time, servings, mode, calories, ingredients, instructions, type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *";
-    let values = [name, time, servings, mode, calories, ingredients, instructions, type];
+async function addRecipe(user_id, name, time, servings, mode, calories, ingredients, instructions, type){
+    let queryText = "INSERT INTO recipes (user_id, name, time, servings, mode, calories, ingredients, instructions, type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *";
+    let values = [user_id, name, time, servings, mode, calories, ingredients, instructions, type];
     const result = await pool.query(queryText, values);
     return result.rows[0];
 }
@@ -38,6 +45,7 @@ module.exports = {
     getAllRecipes,
     getOneRecipeById,
     getRecipesByType,
+    getRecipesUser,
     deleteRecipe,
     addRecipe
 };

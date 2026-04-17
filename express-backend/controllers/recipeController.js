@@ -28,11 +28,27 @@ async function fetchRecipeById(req, res) {
 
 async function fetchRecipesByType(req, res) {
     const type = req.params.type;
-    let params;
+   
     if (type) {
         try {
-            params = [type];
-            const recipes = await model.getRecipesByType(params);
+            const recipes = await model.getRecipesByType(type);
+            res.json(recipes);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Server error");
+        }
+    } else {
+        res.status(400).send("Missing required type param!");
+    }
+}
+
+
+async function fetchRecipesByUser(req, res) {
+    const user_id = req.params.user_id;
+    let params;
+    if (user_id) {
+        try {
+            const recipes = await model.getRecipesByUser(user_id);
             res.json(recipes);
         } catch (err) {
             console.error(err);
@@ -63,10 +79,10 @@ async function removeRecipe(req, res) {
 }
 
 async function createRecipe(req, res) {
-    const { name, time, servings, mode, calories, ingredients, instructions, type } = req.body;
-    if (name && time && servings && mode && calories && ingredients && instructions && type) {
+    const {user_id, name, time, servings, mode, calories, ingredients, instructions, type } = req.body;
+    if (user_id && name && time && servings && mode && calories && ingredients && instructions && type) {
         try {
-            const newRecipe = await model.addRecipe(name, time, servings, mode, calories, ingredients, instructions, type);
+            const newRecipe = await model.addRecipe(user_id, name, time, servings, mode, calories, ingredients, instructions, type);
             res.status(201).json(newRecipe);
         } catch (err) {
             console.error(err);
@@ -81,6 +97,7 @@ module.exports = {
     fetchAllRecipes,
     fetchRecipeById,
     fetchRecipesByType,
+    fetchRecipesByUser,
     removeRecipe,
     createRecipe
 };
