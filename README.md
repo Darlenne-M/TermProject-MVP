@@ -46,12 +46,13 @@ Getting Started
    
 7. Open your browser and navigate to http://localhost:5173 to view the application.
 
-Frontend Framework
+
+FRONTEND FRAMEWORK
 
 I used React (Vite) because it provides fast development, reusable components, and efficient state management using hooks. Vite was chosen for its fast build times and modern tooling.
 
 
-Backend Structure
+BACKEND STRUCTURE
 
 I used Node.js with Express. The backend is structured into:
 
@@ -60,9 +61,9 @@ models (database logic)
 auth (Passport Google OAuth)
 server.js (main entry point)
 
-This separation keeps the code modular and easier to maintain.
 
-Database Schema
+
+DATABASE SCHEMA
 
 I used a relational database (PostgreSQL). The schema includes:
 
@@ -72,7 +73,9 @@ Relationships between users and their recipes
 
 This allows each user to manage their own recipes securely.
 
-Challenges
+
+CHALLENGES
+
 1. Google OAuth redirect issues
 
 I faced a redirect_uri_mismatch error due to incorrect callback URLs between localhost and production. I fixed this by properly configuring:
@@ -89,10 +92,11 @@ express-backend
 react-frontend-client
 
 
-Learning Outcomes
+LEARNING OUTCOMES
+
 Learned full-stack architecture
 Understood OAuth authentication flow using Google Passport
 
-Future Work
+FUTURE WORK
 
 If i had more time, I would have figured out a way for users to be able to upload photos of their recipes
