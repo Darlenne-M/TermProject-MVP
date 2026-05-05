@@ -7,7 +7,7 @@ const multer = require("multer");
 app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.use(express.static("public"));
+app.use(express.static("public"));
 
 require('dotenv').config();
 
