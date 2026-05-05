@@ -41,6 +41,10 @@ app.use('/recipes', recipeRoutes);
 app.use('/users', userRoutes);
 app.use('/auth', require('./auth/authRoute'));
 
+app.get("/", (req, res) => {
+    res.send("Welcome to the Recipe API!");
+});
+
 console.log("CLIENT_BASE_URL =", process.env.CLIENT_BASE_URL);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
