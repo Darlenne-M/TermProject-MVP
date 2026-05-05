@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const BACKEND_URL = import.meta.env.VITE_API_URL;
 
 // 1. Create the Context
 const AuthContext = createContext(null);
