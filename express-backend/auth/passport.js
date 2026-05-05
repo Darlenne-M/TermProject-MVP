@@ -7,7 +7,7 @@ const userModel = require('../models/userModel');
 passport.use(new GoogleStrategy({
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret,
-  callbackURL: `${process.env.VITE_API_URL}/auth/google/callback`
+  callbackURL: process.env.GOOGLE_CALLBACK_URL
 }, async (token, tokenSecret, profile, done) => {
 
   const newUser = {
