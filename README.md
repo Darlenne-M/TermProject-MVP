@@ -5,8 +5,11 @@
   -Create a .env file in the express-backend directory with the following       content:
    
     DATABASE_URL='YOUR_DATABASE_URL_HERE'
+   
     CLIENT_BASE_URL='http://localhost:5173'
+   
     clientID='client-id-from-google-console'
+   
     clientSecret='client-secret-from google-console'
 
   -Create a .env file in the react-frontend-client directory with the following content:
