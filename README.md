@@ -32,6 +32,7 @@ Frontend Framework
 
 I used React (Vite) because it provides fast development, reusable components, and efficient state management using hooks. Vite was chosen for its fast build times and modern tooling.
 
+
 Backend Structure
 
 I used Node.js with Express. The backend is structured into:
@@ -56,21 +57,24 @@ This allows each user to manage their own recipes securely.
 Challenges
 1. Google OAuth redirect issues
 
-I faced a redirect_uri_mismatch error due to incorrect callback URLs between localhost and production. This was fixed by properly configuring:
+I faced a redirect_uri_mismatch error due to incorrect callback URLs between localhost and production. I fixed this by properly configuring:
 
 Google Cloud Console redirect URIs
 environment variables in Render
-Passport callbackURL setup
+
+
 2. Deployment structure issues
 
-Initially, Render could not find the correct root directory and build scripts. This was fixed by correctly separating:
+Initially, Render could not find the correct root directory and build scripts. I fixed this by correctly separating:
 
-express-backend (backend service)
-react-frontend-client (frontend build)
-3. Environment variable issues
+express-backend 
+react-frontend-client
 
-Frontend variables (VITE_API_URL) were not updating because Vite embeds them at build time. This required rebuilding the frontend after changes.
 
 Learning Outcomes
-Learned full-stack architecture (frontend + backend separation)
+Learned full-stack architecture
 Understood OAuth authentication flow using Google Passport
+
+Future Work
+
+If i had more time, I would have figured out a way for users to be able to upload photos of their recipes
