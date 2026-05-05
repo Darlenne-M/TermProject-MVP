@@ -7,7 +7,7 @@ const multer = require("multer");
 app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 require('dotenv').config();
 
@@ -46,7 +46,7 @@ app.use('/auth', require('./auth/authRoute'));
 app.use(express.static(path.join(__dirname, '../react-frontend-client/dist')));
 
 // Direct all non-API requests to the React app's index.html
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../react-frontend-client/dist', 'index.html'));
 });
 
