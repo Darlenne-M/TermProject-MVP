@@ -45,7 +45,8 @@ app.use('/auth', require('./auth/authRoute'));
 // Serve the static files from the React app's build directory
 app.use(express.static(path.join(__dirname, '../react-frontend-client/dist')));
 
-app.get('*',(req, res) => {
+// Direct all non-API requests to the React app's index.html
+app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../react-frontend-client/dist', 'index.html'));
 });
 
