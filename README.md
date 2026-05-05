@@ -2,8 +2,8 @@
 
 #Getting Started
 1. Clone the repository and navigate to the project directory. Add environment variables for the backend and frontend:
-2. 
-  -Create a .env file in the express-backend directory with the following content:
+ 
+    -Create a .env file in the express-backend directory with the following         content:
    
     DATABASE_URL='YOUR_DATABASE_URL_HERE'
    
