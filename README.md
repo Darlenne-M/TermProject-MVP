@@ -67,6 +67,10 @@ auth (Passport Google OAuth)
 server.js (main entry point)
 
 
+THIRD PARTY API
+
+I implemented Spoonacular API which fetches external recipe data so users can search for recipes not stored in the database.
+
 
 DATABASE SCHEMA
 
