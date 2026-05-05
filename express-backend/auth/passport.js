@@ -10,6 +10,7 @@ passport.use(new GoogleStrategy({
   callbackURL: '/auth/google/callback'
 }, async (token, tokenSecret, profile, done) => {
 console.log("GOOGLE CALLBACK URL =", process.env.CLIENT_BASE_URL);
+console.log("FULL CALLBACK =", '/auth/google/callback');
   const newUser = {
     googleId: profile.id,
     displayName: profile.displayName,
