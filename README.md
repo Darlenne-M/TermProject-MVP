@@ -1,6 +1,7 @@
 # TermProject-MVP
 
-#Getting Started
+Getting Started
+
 1. Clone the repository and navigate to the project directory. Add environment variables for the backend and frontend:
  
     -Create a .env file in the express-backend directory with the following         content:
@@ -18,6 +19,7 @@
        VITE_API_URL=http://localhost:3000
     
 2. Install dependencies for both the backend and frontend:
+   
     -For the backend:
    
        cd express-backend
@@ -30,18 +32,19 @@
    
        npm install
    
-3. Start the backend server:
+4. Start the backend server:
    
        cd express-backend
+   
        node server.js
    
-4. In a separate terminal, start the frontend development server:
+6. In a separate terminal, start the frontend development server:
    
        cd react-frontend-client
    
        npm run dev
    
-5. Open your browser and navigate to http://localhost:5173 to view the application.
+7. Open your browser and navigate to http://localhost:5173 to view the application.
 
 Frontend Framework
 
