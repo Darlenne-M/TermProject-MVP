@@ -50,7 +50,7 @@
 }
 
 body {
-  background-color: white;
+  background-color: lightgoldenrodyellow;
   margin: 0;
 }
 
@@ -59,7 +59,7 @@ body {
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
+  border-inline: 1px solid transparent;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -89,7 +89,8 @@ h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
-  margin: 0 0 8px;
+  margin-top: 20px;;
+  font-family: cursive;
 
   @media (max-width: 1024px) {
     font-size: 20px;
@@ -148,13 +149,26 @@ code {
   display: block;
   margin-bottom: 5px;
 }
+.ingredients-box {
+  min-height: 120px;
+}
+.instructions-box {
+  min-height: 220px;
+}
+
+textarea{
+  white-space: pre-wrap;
+  overflow: break-word;
+}
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 50%;
+  resize: vertical;
   padding: 8px;
   box-sizing: border-box;
+  background-color: rgba(128, 128, 128, 0.695);
 }
 
 .btn {
@@ -174,6 +188,7 @@ code {
 }
 
 .items-container {
+  margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
@@ -182,7 +197,7 @@ code {
 .item {
   background-color: rgba(255, 166, 0, 0.514);
   flex: 0 0 200px;
-  color: grey;
+  color: rgba(0, 0, 0, 0.654);
   margin: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -194,9 +209,10 @@ code {
 }
 
 .card-holder {
-  color: grey;
+  color: rgba(0, 0, 0, 0.654);
   width: 400px;
-  height: 300px;
+  height: auto;
+  padding: 10px 50px 20px 50px;
   background-color: rgba(255, 166, 0, 0.514);
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -235,12 +251,36 @@ code {
   margin-top: 10px;
 }
 
-.button {
+.add {
   text-decoration: none;
   border-radius: 5px;
   margin-top: 10px;
   display: inline-block;
   padding: 10px 20px;
+  margin-bottom: 50px;
   background-color: rgba(255, 166, 0, 0.784);
   color: white;
+}
+
+.navbar{
+  background-color: rgba(211, 211, 211, 0.729);
+  padding: 15px;
+}
+
+button{
+  background: none;
+  border:none;
+  font-size: 18px;
+  color: rgba(85, 0, 255, 0.247);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.search-box {
+  width: 300px;
+  margin: 20px auto;
+  padding: 5px;
+  border-radius: 7px;
+  background-color: white;
+  color: black;
 }

@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 const RecipesListComponent = () => {
     const { type } = useParams();
     const [recipes, setRecipes] = useState([]);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         if (type) {
@@ -21,21 +22,33 @@ const RecipesListComponent = () => {
         }
     }, [type]);
 
+    const filteredRecipes = recipes.filter(recipe => {
+        const term = search.toLowerCase().trim();
+
+        if (!term) return true;
+
+        return (recipe.name.toLowerCase().includes(term) ||
+            recipe.type.toLowerCase().includes(term)
+        );
+    });
+
     return (
         <>
-            <h2 className='text-center'>{type ? type + ' List' : 'Recipes List'}</h2>
-            {type && <Link to="/recipes" className="card-link">Recipe List</Link>}
-
-            <div className='row'>
-                {type && <Link to="/add" className='btn btn-outline-primary'>Add Recipe</Link>}
-            </div>
+            <h2 className='text-center'>{type ? type + ' List' : 'Make your own food, stay at home'}</h2>
+            
+        
+            <input type='text' placeholder='🔍︎ Search recipes'
+                value={search} onChange={(e) => setSearch(e.target.value)} className='form-control search-box'>
+                    
+            </input>
             <main className='items-container'>
-                {recipes.map(recipe => (
+                {filteredRecipes.length === 0 ? (
+                    <p>No recipes found</p>
+                ):(
+                filteredRecipes.map(recipe => (
                     <article className="item" key={recipe.id}>
                         <div className='text'>
-                            <h3>
-                                {recipe.name}
-                            </h3>
+                            <h3>{recipe.name}</h3>
                             <p>Time: {recipe.time}</p>
                             <p>Difficulty: {recipe.mode}</p>
                             <p>Servings: {recipe.servings}</p>
@@ -44,7 +57,8 @@ const RecipesListComponent = () => {
                         </div>
 
                     </article>
-                ))}
+                ))
+            )}
 
 
 

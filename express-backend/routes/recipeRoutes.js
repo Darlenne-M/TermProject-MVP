@@ -3,19 +3,20 @@ const express = require("express");
 const router = express.Router();
 const recipeController = require('../controllers/recipeController');
 
-const cors = require('cors');
 
-const corsOptions = {
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true // Allow cookies and authentication headers
-};
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.status(401).json({ message: 'Not authenticated' });
+}
 
-router.use(cors(corsOptions));
+
 
 router.get("/type/:type", recipeController.fetchRecipesByType);
-router.get("/user/:user", recipeController.fetchRecipesByUser);
-router.get("/:id", recipeController.fetchRecipeById);
+router.get("/my", ensureAuthenticated, recipeController.fetchRecipesByUser);
 router.get("/", recipeController.fetchAllRecipes);
-router.post("/", recipeController.createRecipe);
-router.delete("/:id", recipeController.removeRecipe);
+router.get("/:id", recipeController.fetchRecipeById);
+router.post("/", ensureAuthenticated,recipeController.createRecipe);
+router.delete("/:id", ensureAuthenticated, recipeController.removeRecipe);
 module.exports = router;

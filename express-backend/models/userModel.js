@@ -25,9 +25,27 @@ async function addUser(name, email, password) {
     const result = await pool.query(queryText, values);
     return result.rows[0];
 }
+
+async function getUserById(googleId) {
+    const queryText = "SELECT * FROM users where googleid= $1";
+    const values = [googleId];
+    const result = await pool.query(queryText, values);
+    return result.rows[0];
+}
+
+async function createNewUser([googleId, displayName, firstName, lastName, email]) {
+    let queryText = "INSERT INTO users ( googleId, displayName, firstName, lastName, email) VALUES ($1, $2, $3, $4, $5) RETURNING *";
+    let values = [googleId, displayName, firstName, lastName, email];
+    const result = await pool.query(queryText, values);
+    return result.rows[0];
+}
+
+
 module.exports = {
     getAllUsers,
     getOneUserById,
     deleteUser,
-    addUser
+    addUser,
+    getUserById,
+    createNewUser
 };

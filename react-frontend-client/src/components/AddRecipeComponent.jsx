@@ -4,8 +4,7 @@ import '../index.css';
 import { useNavigate } from 'react-router-dom';
 
 const AddRecipeComponent = () => {
-    //const user_id = localStorage.getItem("user_id");
-    const user_id = 1;
+    
     const [name, setName] = useState('');
     const [time, setTime] = useState('');
     const [servings, setServings] = useState('');
@@ -14,14 +13,29 @@ const AddRecipeComponent = () => {
     const [ingredients, setIngredients] = useState('');
     const [instructions, setInstructions] = useState('');
     const [type, setType] = useState('');
+
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        const newRecipe = { user_id, name, time, servings, mode, calories, ingredients, instructions, type };
-        RecipesService.createRecipe(newRecipe).then(() => {
-            navigate('/recipes')
-        });
+
+        try {
+            const newRecipe = { 
+                name, 
+                time, 
+                servings, 
+                mode, 
+                calories, 
+                ingredients, 
+                instructions, 
+                type 
+            };
+            await RecipesService.createRecipe(newRecipe)
+                navigate('/recipes')
+            
+        } catch (error) {
+            console.error("Error creating recipe:", error);
+        }
     };
 
     useEffect(() => {
@@ -58,14 +72,14 @@ const AddRecipeComponent = () => {
                     </input>
 
                     <label>List all Ingredients:  </label>
-                    <input type='text' className='form-control' value={ingredients}
+                    <textarea type='text' className='form-control ingredients-box' value={ingredients}
                         onChange={(e) => setIngredients(e.target.value)} required>
-                    </input>
+                    </textarea>
 
                     <label>Instructions to Prepare:  </label>
-                    <input type='text' className='form-control' value={instructions}
+                    <textarea type='text' className='form-control instructions-box' value={instructions}
                         onChange={(e) => setInstructions(e.target.value)} required>
-                    </input>
+                    </textarea>
 
                     <label>Type of Food:  </label>
                     <input type='text' className='form-control' value={type}
@@ -74,7 +88,7 @@ const AddRecipeComponent = () => {
 
 
                 </div>
-                <button type="submit" className="button">Add Product</button>
+                <button type="submit" className="add">Add Recipe</button>
 
 
 

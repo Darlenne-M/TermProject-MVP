@@ -31,7 +31,7 @@ async function fetchRecipesByType(req, res) {
    
     if (type) {
         try {
-            const recipes = await model.getRecipesByType([type]);
+            const recipes = await model.getRecipesByType(type);
             res.json(recipes);
         } catch (err) {
             console.error(err);
@@ -44,19 +44,22 @@ async function fetchRecipesByType(req, res) {
 
 
 async function fetchRecipesByUser(req, res) {
-    const user_id = req.params.user_id;
-    let params;
-    if (user_id) {
-        try {
-            const recipes = await model.getRecipesByUser(user_id);
-            res.json(recipes);
-        } catch (err) {
-            console.error(err);
-            res.status(500).send("Server error");
+    
+    try{
+        if(!req.user) {
+            return res.status(401).json({ message: 'Not authenticated' });
         }
-    } else {
-        res.status(400).send("Missing required type param!");
+        
+        const user_id = req.user.id;
+        console.log("USER" , user_id);
+        const recipes = await model.getRecipesByUser(user_id);
+        res.json(recipes);
+
+    }catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
     }
+    
 }
 
 async function removeRecipe(req, res) {
@@ -79,8 +82,10 @@ async function removeRecipe(req, res) {
 }
 
 async function createRecipe(req, res) {
-    const {user_id, name, time, servings, mode, calories, ingredients, instructions, type } = req.body;
-    if (user_id && name && time && servings && mode && calories && ingredients && instructions && type) {
+    const {name, time, servings, mode, calories, ingredients, instructions, type } = req.body;
+    const user_id = req.user.id;
+    console.log(req.user);
+    if (name && time && servings && mode && calories && ingredients && instructions && type) {
         try {
             const newRecipe = await model.addRecipe(user_id, name, time, servings, mode, calories, ingredients, instructions, type);
             res.status(201).json(newRecipe);

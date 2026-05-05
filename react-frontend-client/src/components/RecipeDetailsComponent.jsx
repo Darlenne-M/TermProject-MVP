@@ -21,7 +21,7 @@ useEffect(() => {
 return(
     <div>
         <h2 className='text-center'>Recipe Details</h2>
-        <Link to="/add" className='btn btn-outline-primary'>Add Recipe</Link>
+       
         <div id="details-container">
             <div className='card-holder'>
                 <h3>{recipe.name}</h3>
@@ -35,7 +35,7 @@ return(
 
             </div>
             <div className='card-footer text body-secondary'>
-                <Link to="/recipes" className="card-link">Recipe List</Link>
+               
             </div>
         </div>
     
