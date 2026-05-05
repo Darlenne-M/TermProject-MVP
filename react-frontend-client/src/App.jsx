@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css'
-import MyRecipesComponent from './components/MyRecipesComponent.jsx';
+
 import AddRecipeComponent from './components/AddRecipeComponent';
 import RecipesListComponent from './components/RecipeListComponent';
 import RecipeDetailsComponent from './components/RecipeDetailsComponent';
@@ -26,7 +26,7 @@ function App() {
               <button onClick={logout}>Logout</button> 
               | <Link to="/profile">Profile</Link>
               | <Link to="/add">Add Recipe</Link>
-              | <Link to="/my-recipes">My Recipes</Link>
+        
             </>
           )}
             
@@ -36,7 +36,7 @@ function App() {
           <Route element={<ProtectedLayout />}>
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/add" element={<AddRecipeComponent />} />
-            <Route path="/my-recipes" element={<MyRecipesComponent />} />
+        
           </Route>
           <Route path="/" element={<RecipesListComponent />} />
           <Route path="/recipes" element={<RecipesListComponent />} />

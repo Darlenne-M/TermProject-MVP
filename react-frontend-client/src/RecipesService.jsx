@@ -11,6 +11,10 @@ class RecipesService {
         return axios.get(`${RECIPES_API_BASE_URL}/my`, { withCredentials: true });
     }
 
+    searchExternalRecipes(query) {
+        return axios.get(`${RECIPES_API_BASE_URL}/search`, { params: { q: query }});
+    }
+
     createRecipe(recipe) {
         return axios.post(RECIPES_API_BASE_URL + "/", recipe, { withCredentials: true });
     }
@@ -23,6 +27,10 @@ class RecipesService {
     getRecipesByType(type) {
         return axios.get(`${RECIPES_API_BASE_URL}/type/${type}`);
         
+    }
+
+    updateRecipe(id, recipe) {
+        return axios.put(`${RECIPES_API_BASE_URL}/${id}`, recipe, { withCredentials: true });
     }
 
     deleteRecipe(id) {

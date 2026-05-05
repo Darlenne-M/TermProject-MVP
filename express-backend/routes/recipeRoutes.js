@@ -16,7 +16,9 @@ function ensureAuthenticated(req, res, next) {
 router.get("/type/:type", recipeController.fetchRecipesByType);
 router.get("/my", ensureAuthenticated, recipeController.fetchRecipesByUser);
 router.get("/", recipeController.fetchAllRecipes);
+router.get("/search", recipeController.searchExternalRecipes);
 router.get("/:id", recipeController.fetchRecipeById);
+router.put('/:id', ensureAuthenticated, recipeController.updateRecipe);
 router.post("/", ensureAuthenticated,recipeController.createRecipe);
 router.delete("/:id", ensureAuthenticated, recipeController.removeRecipe);
 module.exports = router;

@@ -241,15 +241,6 @@ textarea{
   margin-top: 10px;
 }
 
-.delete-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #dc3545;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 10px;
-}
 
 .add {
   text-decoration: none;
@@ -283,4 +274,32 @@ button{
   border-radius: 7px;
   background-color: white;
   color: black;
+}
+
+.delete-button{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgba(255, 0, 0, 0.459);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.save, .cancel{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: white;
+  color: rgba(255, 166, 0, 0.784);
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  
+}
+
+.button-row{
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }

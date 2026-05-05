@@ -1,5 +1,6 @@
 "use strict";
 const model = require('../models/recipeModel');
+const axios = require('axios');
 
 async function fetchAllRecipes(req, res) {
     try {
@@ -98,11 +99,54 @@ async function createRecipe(req, res) {
     }
 }
 
+async function updateRecipe(req, res) {
+    try{
+        const id = req.params.id;
+        const {name, time, servings, mode, calories, ingredients, instructions, type } = req.body;
+
+        const updated = await model.updateRecipe(id, name, time, servings, mode, calories, ingredients, instructions, type);
+
+        res.json(updated);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Failed to update recipe");
+    }
+}
+
+async function searchExternalRecipes(req, res) {
+    try{
+        console.log("API KEY:", process.env.SPOONACULAR_API_KEY);
+console.log("QUERY:", req.query.q);
+        const query = req.query.q;
+
+        if(!query) {
+            return res.status(400).json({ message: 'Missing required query parameter q' });
+        }
+
+        const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch`,
+            {
+                params: {
+                    query,
+                    number: 10,
+                    apiKey: process.env.SPOONACULAR_API_KEY
+                }
+            }
+        );
+        res.json(response.data.results);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("External API error");
+    }
+}
+
+
 module.exports = {
     fetchAllRecipes,
     fetchRecipeById,
     fetchRecipesByType,
     fetchRecipesByUser,
     removeRecipe,
-    createRecipe
+    createRecipe,
+    updateRecipe,
+    searchExternalRecipes
 };

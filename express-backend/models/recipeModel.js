@@ -44,11 +44,19 @@ async function addRecipe(user_id, name, time, servings, mode, calories, ingredie
     return result.rows[0];
 }
 
+async function updateRecipe(id, name, time, servings, mode, calories, ingredients, instructions, type) {
+    const queryText = "UPDATE recipes SET name=$1, \"time\"=$2, servings=$3, mode=$4, calories=$5, ingredients=$6, instructions=$7, type=$8 WHERE id=$9 RETURNING *";
+    const values = [name, time, servings, mode, calories, ingredients, instructions, type, id];
+    const result = await pool.query(queryText, values);
+    return result.rows[0];
+}
+
 module.exports = {
     getAllRecipes,
     getOneRecipeById,
     getRecipesByType,
     getRecipesByUser,
     deleteRecipe,
-    addRecipe
+    addRecipe,
+    updateRecipe
 };
