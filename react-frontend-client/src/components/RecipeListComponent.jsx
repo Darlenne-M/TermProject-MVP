@@ -16,21 +16,40 @@ const RecipesListComponent = () => {
             try {
                 if (search.trim()) {
                     const res = await RecipesService.searchExternalRecipes(search);
-                    setRecipes(res.data);
-                    document.title = `Search results for "${search}"`;
+
+                    console.log("API DATA:", res.data);
+
+                    const formatted = res.data.map(r => ({
+                        id: r.id,
+                        name: r.title,
+                        time: r.readyInMinutes,
+                        servings: r.servings,
+                        image: r.image,
+                        external: true
+                    }));
+
+                    console.log("FORMATTED:", formatted);
+
+                    setRecipes(formatted);
                     return;
                 }
+                if (!user) {
+                    setRecipes([]);
+                    return;
+                }
+
                 if (type) {
                     const res = await RecipesService.getRecipesByType(type);
                     setRecipes(res.data);
                     document.title = `Recipes: ${type}`;
+                    return;
                 }
-                 if(user){
-                    const res = await RecipesService.getMyRecipes();
-                        setRecipes(res.data);
-                        document.title = 'My Recipes';
-                } 
-              
+
+
+                const res = await RecipesService.getMyRecipes();
+                setRecipes(res.data);
+                document.title = 'My Recipes';
+
             } catch (error) {
                 console.error("Error fetching recipes:", error);
             }
@@ -41,7 +60,7 @@ const RecipesListComponent = () => {
     }, [search, type, user]);
 
     const handleDelete = async (id) => {
-        if(!window.confirm("Are you sure you want to delete this recipe?")) {
+        if (!window.confirm("Are you sure you want to delete this recipe?")) {
             return;
         }
         try {
@@ -72,7 +91,7 @@ const RecipesListComponent = () => {
                             <div className='text'>
                                 <h3>{recipe.name || recipe.title} </h3>
                                 <p> Time: {recipe.time || 'N/A'}</p>
-                                <p>Difficulty: {recipe.mode}</p>
+                                {recipe.mode && recipe.mode !== 'N/A' && <p>Difficulty: {recipe.mode}</p>}
                                 <p>Servings: {recipe.servings || 'N/A'}</p>
 
                                 {recipe.type && (
@@ -82,11 +101,15 @@ const RecipesListComponent = () => {
                                 )}
 
                                 {recipe.id && (
-                                    <p><Link className='detail-button' to={`/recipes/${recipe.id}`}>
+                                    <p><Link
+                                        className='detail-button'
+                                        to={`/recipes/${recipe.id}`}
+                                        state={{ external: recipe.external }}
+                                    >
                                         View
                                     </Link></p>
                                 )}
-                                {user && recipe.id && (
+                                {user && !recipe.external && (
                                     <button className='detail-button delete-button' onClick={() => handleDelete(recipe.id)}>
                                         Delete
                                     </button>

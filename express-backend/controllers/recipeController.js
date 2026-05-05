@@ -128,6 +128,7 @@ console.log("QUERY:", req.query.q);
                 params: {
                     query,
                     number: 10,
+                    addRecipeInformation:true,
                     apiKey: process.env.SPOONACULAR_API_KEY
                 }
             }
@@ -139,6 +140,20 @@ console.log("QUERY:", req.query.q);
     }
 }
 
+async function getExternalRecipeById(req, res) {
+    try {
+        const id = req.params.id;
+        const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information`, {
+            params: {
+                apiKey: process.env.SPOONACULAR_API_KEY
+            }
+        });
+        res.json(response.data);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("External API error");
+    }
+}   
 
 module.exports = {
     fetchAllRecipes,
@@ -148,5 +163,6 @@ module.exports = {
     removeRecipe,
     createRecipe,
     updateRecipe,
-    searchExternalRecipes
+    searchExternalRecipes, 
+    getExternalRecipeById
 };

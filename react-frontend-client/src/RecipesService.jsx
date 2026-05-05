@@ -14,6 +14,9 @@ class RecipesService {
     searchExternalRecipes(query) {
         return axios.get(`${RECIPES_API_BASE_URL}/search`, { params: { q: query }});
     }
+    getExternalRecipeById(id) {
+        return axios.get(`${RECIPES_API_BASE_URL}/external/${id}`);
+    }
 
     createRecipe(recipe) {
         return axios.post(RECIPES_API_BASE_URL + "/", recipe, { withCredentials: true });

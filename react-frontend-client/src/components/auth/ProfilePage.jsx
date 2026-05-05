@@ -19,7 +19,7 @@ function ProfilePage() {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '2rem auto', padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
+    <div style={{ backgroundColor: '#f8f9fa', maxWidth: '600px', margin: '2rem auto', padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
 
       <h2>Profile Page</h2>
 
