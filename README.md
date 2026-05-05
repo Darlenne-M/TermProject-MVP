@@ -58,6 +58,7 @@ I used Node.js with Express. The backend is structured into:
 
 routes (API endpoints)
 models (database logic)
+Controllers
 auth (Passport Google OAuth)
 server.js (main entry point)
 
