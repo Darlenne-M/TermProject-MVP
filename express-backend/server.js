@@ -1,6 +1,7 @@
 "use strict";
 const express = require("express");
 const app = express();
+const path = require('path');
 
 const multer = require("multer");
 app.use(multer().none());
@@ -41,8 +42,12 @@ app.use('/recipes', recipeRoutes);
 app.use('/users', userRoutes);
 app.use('/auth', require('./auth/authRoute'));
 
-app.get("/", (req, res) => {
-    res.send("Welcome to the Recipe API!");
+// Serve the static files from the React app's build directory
+app.use(express.static(path.join(__dirname, '../react-frontend-client/dist')));
+
+// Direct all non-API requests to the React app's index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../react-frontend-client/dist', 'index.html'));
 });
 
 console.log("CLIENT_BASE_URL =", process.env.CLIENT_BASE_URL);
