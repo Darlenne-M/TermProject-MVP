@@ -57,9 +57,13 @@ BACKEND STRUCTURE
 I used Node.js with Express. The backend is structured into:
 
 routes (API endpoints)
+
 models (database logic)
+
 Controllers
+
 auth (Passport Google OAuth)
+
 server.js (main entry point)
 
 
@@ -69,7 +73,9 @@ DATABASE SCHEMA
 I used a relational database (PostgreSQL). The schema includes:
 
 Users table (Google OAuth users)
+
 Recipes table (user-created recipes)
+
 Relationships between users and their recipes
 
 This allows each user to manage their own recipes securely.
