@@ -97,10 +97,7 @@ environment variables in Render
 
 2. Deployment structure issues
 
-Initially, Render could not find the correct root directory and build scripts. I fixed this by correctly separating:
-
-express-backend 
-react-frontend-client
+Initially, Render could not find the correct root directory and build scripts.
 
 
 LEARNING OUTCOMES
