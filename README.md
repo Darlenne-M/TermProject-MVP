@@ -87,17 +87,10 @@ This allows each user to manage their own recipes securely.
 
 CHALLENGES
 
-1. Google OAuth redirect issues
-
-I faced a redirect_uri_mismatch error due to incorrect callback URLs between localhost and production. I fixed this by properly configuring:
-
-Google Cloud Console redirect URIs
-environment variables in Render
+1. Configuring Google OAuth 
 
 
-2. Deployment structure issues
-
-Initially, Render could not find the correct root directory and build scripts.
+2. Deployment on Render
 
 
 LEARNING OUTCOMES
