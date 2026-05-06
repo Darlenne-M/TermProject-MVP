@@ -96,6 +96,7 @@ CHALLENGES
 LEARNING OUTCOMES
 
 Learned full-stack architecture
+
 Understood OAuth authentication flow using Google Passport
 
 FUTURE WORK
